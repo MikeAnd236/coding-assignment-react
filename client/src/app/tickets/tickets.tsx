@@ -58,10 +58,8 @@ export function Tickets({
 
       if (!res.ok) throw new Error("Failed to update assignee");
 
-      const updatedTicket = await res.json();
-
       setTickets((prev) =>
-        prev.map((t) => (t.id === ticketId ? updatedTicket : t))
+        prev.map((t) => (t.id === ticketId ? { ...t, assigneeId: userId } : t))
       );
 
       if (userId) {
